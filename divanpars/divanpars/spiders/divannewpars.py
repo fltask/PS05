@@ -4,13 +4,13 @@ import scrapy
 class DivannewparsSpider(scrapy.Spider):
     name = "divannewpars"
     allowed_domains = ["https://divan.ru"]
-    start_urls = ["https://divan.ru/category/divany-i-kresla"]
+    start_urls = ["https://www.divan.ru/category/svet"]
 
     def parse(self, response):
-        divans = response.css('div._Ud0k')
-        for divan in divans:
+        svetilniks = response.css('div._Ud0k')
+        for svetilnik in svetilniks:
             yield {
-                'name': divan.css('div.lsooF span::text').get(),
-                'price': divan.css('div.pY3d2 span.ui-LD-ZU::text').get(),
-                'url': divan.css('div.lsooF a::attr(href)').get(),
+                'name': svetilnik.css('div.lsooF span::text').get(),
+                'price': svetilnik.css('div.pY3d2 span.ui-LD-ZU::text').get(),
+                'url': svetilnik.css('div.lsooF a::attr(href)').get(),
              }
